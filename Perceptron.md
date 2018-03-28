@@ -78,100 +78,99 @@ $$\begin{array} \ w = w - \eta \cdot dw \\ b = b - \eta \cdot db \\ \end{array}$
 Implementation
 首先要定义 Perceptron 类：
 
-  import numpy as np
+    import numpy as np
+    
+    class Perceptron(object):
+        """Perceptron Model"""
 
-  class Perceptron(object):
-      """Perceptron Model"""
+        w = None
+        b = None
 
-      w = None
-      b = None
+        def __init__(self):
+            self.b = 0
 
-      def __init__(self):
-          self.b = 0
+        def __call__(self, x):
+            return 1 if np.dot(self.w, x) + self.b > 0 else 0
 
-      def __call__(self, x):
-          return 1 if np.dot(self.w, x) + self.b > 0 else 0
+        def loss(self, x, y):
+            if self.w is None:
+                self.w = np.random.uniform(0,1,(x.shape[0],))
 
-      def loss(self, x, y):
-          if self.w is None:
-              self.w = np.random.uniform(0,1,(x.shape[0],))
+            loss = -1 * y * (np.dot(self.w, x) + self.b)
+            return loss
 
-          loss = -1 * y * (np.dot(self.w, x) + self.b)
-          return loss
-
-      def update(self, x, y, eta):
-          dw = -1 * y * x
-          db = -1 * y
-
-          self.w = self.w - eta * dw
-          self.b = self.b - eta * db
+        def update(self, x, y, eta):
+            dw = -1 * y * x
+            db = -1 * y
+            self.w = self.w - eta * dw
+            self.b = self.b - eta * db
 
 接下来要做的就是实现训练的逻辑：
 
-  def train(model, x, y, eta = 0.1, epoch = 1):
-      n = x.shape[0]
-      error_point_num = 0
-      epoch_num = 0
+    def train(model, x, y, eta = 0.1, epoch = 1):
+        n = x.shape[0]
+        error_point_num = 0
+        epoch_num = 0
 
-      for i in range(epoch):
-          error_point_num = 0
-          for j in range(n):
-              if y[j] == 0:
-                  y[j] = -1
-              loss = model.loss(x[j], y[j])
-              if loss >= 0:
-                  model.update(x[j], y[j], eta)
-                  error_point_num += 1
-          if error_point_num == 0:
-              break
+        for i in range(epoch):
+            error_point_num = 0
+            for j in range(n):
+                if y[j] == 0:
+                    y[j] = -1
+                loss = model.loss(x[j], y[j])
+                if loss >= 0:
+                    model.update(x[j], y[j], eta)
+                    error_point_num += 1
+            if error_point_num == 0:
+                break
 
-          print("Epoch %d, Error Point Num: %d" % (i, error_point_num))
-          epoch_num += 1
+            print("Epoch %d, Error Point Num: %d" % (i, error_point_num))
+            epoch_num += 1
 
-      print("Epoch %d, Error Point Num: %d" % (epoch_num, error_point_num))
+        print("Epoch %d, Error Point Num: %d" % (epoch_num, error_point_num))
 最后要做的就是把上面的两部分组装起来：
 
-  if __name__ == "__main__":
-      data = np.array([[0.6863727, 0.17526787,  1.],
-                       [0.80132839, 0.10523108, 1.],
-                       [0.90775029, 0.14932357, 1.],
-                       [0.80961084, 0.3694097,  1.],
-                       [0.87508479, 0.60748736, 1.],
-                       [0.70281723, 0.79587493, 1.],
-                       [0.83433634, 0.15264152, 1.],
-                       [0.93900273, 0.14149965, 1.],
-                       [0.9024325,  0.5952603,  1.],
-                       [0.85962927, 0.3794422,  1.],
-                       [0.79602696, 0.99582496, 1.],
-                       [0.91271228, 0.4730507,  1.],
-                       [0.76601726, 0.5419725,  1.],
-                       [0.75340131, 0.9640383,  1.],
-                       [0.4891988,  0.51442063, 0.],
-                       [0.17261154, 0.2748436,  0.],
-                       [0.22090833, 0.86894599, 0.],
-                       [0.07946182, 0.72304428, 0.],
-                       [0.07177909, 0.93407657, 0.],
-                       [0.27563872, 0.5806341,  0.],
-                       [0.03817113, 0.79038495, 0.],
-                       [0.23544452, 0.95657547, 0.],
-                       [0.15161787, 0.34464048, 0.],
-                       [0.30645413, 0.83393461, 0.],
-                       [0.03985814, 0.28320299, 0.]])
+    if __name__ == "__main__":
+        data = np.array([[0.6863727, 0.17526787,  1.],
+                         [0.80132839, 0.10523108, 1.],
+                         [0.90775029, 0.14932357, 1.],
+                         [0.80961084, 0.3694097,  1.],
+                         [0.87508479, 0.60748736, 1.],
+                         [0.70281723, 0.79587493, 1.],
+                         [0.83433634, 0.15264152, 1.],
+                         [0.93900273, 0.14149965, 1.],
+                         [0.9024325,  0.5952603,  1.],
+                         [0.85962927, 0.3794422,  1.],
+                         [0.79602696, 0.99582496, 1.],
+                         [0.91271228, 0.4730507,  1.],
+                         [0.76601726, 0.5419725,  1.],
+                         [0.75340131, 0.9640383,  1.],
+                         [0.4891988,  0.51442063, 0.],
+                         [0.17261154, 0.2748436,  0.],
+                         [0.22090833, 0.86894599, 0.],
+                         [0.07946182, 0.72304428, 0.],
+                         [0.07177909, 0.93407657, 0.],
+                         [0.27563872, 0.5806341,  0.],
+                         [0.03817113, 0.79038495, 0.],
+                         [0.23544452, 0.95657547, 0.],
+                         [0.15161787, 0.34464048, 0.],
+                         [0.30645413, 0.83393461, 0.],
+                         [0.03985814, 0.28320299, 0.]])
 
 
-      perceptron = Perceptron()
-      train(perceptron, data[:,0:2], data[:,-1], 0.1, 30)
+        perceptron = Perceptron()
+        train(perceptron, data[:,0:2], data[:,-1], 0.1, 30)
 完整的代码把上面三段代码贴在一个文件中即可。可视化学习过程的效果就如下 gif 所示。
 
 
 
 同样的 scikit-learn 也提供了相关的模型，用它实现会很轻松愉快：
 
-  import scipy
-  from sklearn.linear_model import Perceptron
+    import scipy
+    from sklearn.linear_model import Perceptron
 
-  perceptron = Perceptron()
-  perceptron.fit(data[:,0:2], data[:,-1])
+    perceptron = Perceptron()
+    perceptron.fit(data[:,0:2], data[:,-1])
 
 # 收敛性的证明
 关于 Perceptron 收敛性的证明网上有很多的材料，比如这个，感兴趣的是可以去详细了解的。需要记下的是，如果一个数据集是线性可分的，那么 Perceptron 算法一定会收敛。
