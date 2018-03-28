@@ -30,3 +30,5 @@ Supervised Learning 常常有人翻译成“监督学习”。在解释什么是
 来表示一个人，其中的每一个分量都是一个 Feature 。 如果这个时候，我们能认为这个向量表示一个人的收入的水平，即“收入=（姓名，性别，年龄，学历，家庭住址）”，那么“收入”这个变量就称之为 Label。**如果机器学习模型构建的是 Feature 和 Label 之间的关系，那么这个模型就属于 _Supervised Learning_**。
 
 类似的，Unsupervised Learning的解释就很容易了，**如果机器学习模型构建的数据上的输入只有 Feature 没有 Label，那么这个模型也就是发现数据之间的关系，这样的模型就属于 _Unsupervised Learning_**。
+
+有些资料会把 Label 表述成 Response Variable，会把 Feature 表输出 Attribute , 其实都是一个意思。 
