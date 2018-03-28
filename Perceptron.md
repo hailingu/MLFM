@@ -65,21 +65,23 @@ $$d = \frac{|w \cdot x + b|}{||w||_2}$$
 $$\begin{array}\ dw_j = \frac{y_i \cdot x_{ij} \cdot ||w||_2 - \frac{w_j \cdot (w \cdot x + b)}{||w||_2} }{||w||^2_2} = y_i \cdot x_{ij} / ||w||_2 - w_j \cdot (w \cdot x + b) / ||w||^3_2 \\
 db = y_i / ||w||_2 \end{array}$$
 
-如果不考虑 $$||w||2$$，上面式子变得更加简单，且对结果没有影响，计算也变得简单了:
+如果不考虑 $$||w||_2$$，上面式子变得更加简单，且对结果没有影响，计算也变得简单了:
 
 $$\begin{array} \ dw_j = y_i \cdot x_{ij} \\  db = y_i\\ \end{array}$$
 
 更新规则：
 
-$$\begin{array} \ w = w - \eta \cdot dw \\ b = b - \eta \cdot db \\ \end{array}$$
+<center>$$\begin{array} \ w = w - \eta \cdot dw \\ b = b - \eta \cdot db \\ \end{array}$$</center>
 
-这里的 η 称之为学习率。
 
-Implementation
+这里的 $$\eta$$ 称之为学习率。
+
+# Implementation
+
 首先要定义 Perceptron 类：
 
     import numpy as np
-    
+
     class Perceptron(object):
         """Perceptron Model"""
 
@@ -173,4 +175,4 @@ Implementation
     perceptron.fit(data[:,0:2], data[:,-1])
 
 # 收敛性的证明
-关于 Perceptron 收敛性的证明网上有很多的材料，比如这个，感兴趣的是可以去详细了解的。需要记下的是，如果一个数据集是线性可分的，那么 Perceptron 算法一定会收敛。
+关于 Perceptron 收敛性的证明网上有很多的材料，比如[这个](http://www.cs.columbia.edu/~mcollins/courses/6998-2012/notes/perc.converge.pdf)，感兴趣的是可以去详细了解的。需要记下的是，如果一个数据集是线性可分的，那么 Perceptron 算法一定会收敛。
