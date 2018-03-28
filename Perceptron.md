@@ -15,6 +15,8 @@ $$ f(x)=\begin{cases} 1, if \ w \cdot x + b \gt 0 \\ 0,\ otherwise\end{cases} $$
 # Data Set
 假如我们现在手上又一个数据集 D=\{(\mathbf{x}_1,y_1),(\mathbf{x}_2,y_2),\cdots,(\mathbf{x}_N,y_N)\} , 其中  $$\mathbf{x}_i \in \mathbb{R}^m,\ y \in \{0,1\}$$，并且要求这个数据集 $$D$$ 是线性可分的。首先，把问题退化最简单的情况，即 $$m=2$$ 的情况。如果把数据集 D 中的所有的点画到二维平面上，因为这个数据集 $$D$$ 是线性可分的，所以会出现如图所示的情况：
 
+![f2.1.png](assets/f2.1.png)
+
 上面的红点的数据是：
 
 [[ 0.6863727   0.17526787  1.        ]
