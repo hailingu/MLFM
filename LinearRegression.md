@@ -24,7 +24,7 @@ Linear Regression 就是为了找到数据的 Feature 和对应 Label 之间的�
 
 线性回归的模型很简单，即
 
-<center>$$y= \mathbf{w}^T \cdot \mathbf{x} +b$$</center></br>
+<center>$$y= \mathbf{w}^T \cdot \mathbf{x} +b$$</center><br/>
 
 下面要做的和之前的 Perceptron 一样，根据数据找到合适的 $$w$$ 和 $$b$$。这里要说明的是，从这一章节开始，黑体用来表示列向量，如上面的 \\(\mathbf{w} = \begin{bmatrix} w_1 \\\ w_2 \\\ \cdots \\\ w_k \end{bmatrix}\\)，
 数据向量 \\(\mathbf{x}\\) 也类似。
