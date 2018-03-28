@@ -29,5 +29,7 @@ Linear Regression 就是为了找到数据的 Feature 和对应 Label 之间的�
 下面要做的和之前的 Perceptron 一样，根据数据找到合适的 $$w$$ 和 $$b$$。这里要说明的是，从这一章节开始，黑体用来表示列向量，如上面的 \\(\mathbf{w} = \begin{bmatrix} w_1 \\\ w_2 \\\ \cdots \\\ w_k \end{bmatrix}\\)，
 数据向量 \\(\mathbf{x}\\) 也类似。
 
+如果把上面的 \\( \mathbf{x} \\) 更换成 \\((f_1(x_1), f_2(x_2), \ldots, f_k(x_k))\\) ，那么就变成了前面提到的广义线性模型。
+
 # Learning Algorithm
 这次的数据集合是由上面的代码生成的，所以这里就省去数据集说明的部分。
