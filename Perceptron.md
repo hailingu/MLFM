@@ -163,7 +163,8 @@ db = y_i / ||w||_2 \end{array}$$</center> <br />
 
         perceptron = Perceptron()
         train(perceptron, data[:,0:2], data[:,-1], 0.1, 30)
-完整的代码把上面三段代码贴在一个文件中即可。可视化学习过程的效果就如下 gif 所示。
+
+完整的代码在[这里](https://github.com/hailingu/MLFM/blob/master/code/Perceptron.py)。可视化学习过程的效果就如下 gif 所示。
 
 ![Perceptron.gif](assets/Perceptron.gif)
 
