@@ -13,6 +13,6 @@
 ## 语言与工具  
 这个 GitBook 中使用的编程语言主要是 Python，偶尔可能会出现 C/C++ 的情况。使用的额外的工具可能包括 PyTorch、Tensorflow、Mxnet等。
 
-参考资料  
+## 参考资料  
 * [李航，统计学习方法](https://book.douban.com/subject/10590856/)
 * [周志华，机器学习](https://book.douban.com/subject/26708119/)
