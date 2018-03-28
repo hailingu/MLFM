@@ -8,7 +8,8 @@ Perceptron 的应用场景是很有限，并且看起来简单易用。后来人
 # Model
 Perceptron 的核心思想就是将一个 $$n$$ 维的向量 $$x \in R_n$$ , 映射到一个只有 0 和 1 两个元素的集合 $$y$$ 上。用公式表示出模型就是来：
 
-<center>$$ f(x)=\begin{cases} 1, if \ w \cdot x + b \gt 0 \\ 0,\ otherwise\end{cases} $$</center>
+<center>$$ f(x)=\begin{cases} 1, if \ w \cdot x + b \gt 0 \\ 0,\ otherwise\end{cases} $$</center> <br />
+
 
 所以 Perceptron 的模型定义简单直接，接下来的重点就是要确定学习算法，这个学习算法能从数据集中自动的确定 $$w$$ 和 $$b$$ 的值。使用 Perceptron 的前提条件是数据集一定是线性可分的，如果数据集本身不能分成两类，那么就不能使用 Perceptron 。
 
@@ -55,7 +56,7 @@ Perceptron 的核心思想就是将一个 $$n$$ 维的向量 $$x \in R_n$$ , 映
 # Learning Algorithm
 Perceptron 是一个线性模型，由几何知识可以得到，如果存在一个超平面将数据分成两部分，那么数据点到平面的距离不为 0 。点到平面的距离计算公式：
 
-<center>$$d = \frac{|w \cdot x + b|}{||w||_2}$$</center>
+<center>$$d = \frac{|w \cdot x + b|}{||w||_2}$$</center> <br />
 
 
 所有不在平面上的点都满足 $$d \neq 0$$。由于数据是有标签的，且 Perceptron 就需要根据标签把数据点分开，那么就有具有相同标签的点会出现超平面的一侧，切到超平面的距离 d>0。即如果标签的结果为 1 ， 那么应该有 $$(w \cdot x+b)/||w||2 \gt 0 $$；类似的如果标签的结果不为 1 ，即有 $$(w\cdot x+b)/||w||2 \lt 0$$。即 $$di=yi \cdot (w \cdot xi+b)/||w||2 \gt 0$$。如果算出来 $$d \lt 0$$，那么就是出现了一个错误称之为 loss。
@@ -63,15 +64,15 @@ Perceptron 是一个线性模型，由几何知识可以得到，如果存在一
 如果发现计算出来的距离结果不符合期望，那么可以采用 SGD 来降低这个损失：
 
 <center>$$\begin{array}\ dw_j = \frac{y_i \cdot x_{ij} \cdot ||w||_2 - \frac{w_j \cdot (w \cdot x + b)}{||w||_2} }{||w||^2_2} = y_i \cdot x_{ij} / ||w||_2 - w_j \cdot (w \cdot x + b) / ||w||^3_2 \\
-db = y_i / ||w||_2 \end{array}$$</center>
+db = y_i / ||w||_2 \end{array}$$</center> <br />
 
 如果不考虑 $$||w||_2$$，上面式子变得更加简单，且对结果没有影响，计算也变得简单了:
 
-<center>$$\begin{array} \ dw_j = y_i \cdot x_{ij} \\  db = y_i\\ \end{array}$$</center>
+<center>$$\begin{array} \ dw_j = y_i \cdot x_{ij} \\  db = y_i\\ \end{array}$$</center> <br />
 
 更新规则：
 
-<center>$$\begin{array} \ w = w - \eta \cdot dw \\ b = b - \eta \cdot db \\ \end{array}$$</center>
+<center>$$\begin{array} \ w = w - \eta \cdot dw \\ b = b - \eta \cdot db \\ \end{array}$$</center> <br />
 
 
 这里的 $$\eta$$ 称之为学习率。
