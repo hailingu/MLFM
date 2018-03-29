@@ -9,4 +9,4 @@
   - [Bias-Variance Decomposition](Bias-Variance_Decomposition.md)
   - [Normalization](Normalization.md)
   - [Regularization](Regularization.md)
-* [Chapter 5 Logistic Regression](Logistic Regression.md)
+* [Chapter 5 Logistic Regression](LogisticRegression.md)
