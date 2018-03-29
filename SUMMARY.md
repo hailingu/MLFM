@@ -6,3 +6,4 @@
 * [Chapter 2 Perceptron](Perceptron.md)
 * [Chapter 3 Linear Regression](LinearRegression.md)
 * [Chpater 4 Model Selection](ModelSelection.md)
+  - [Bias-Variance Decomposition](Bias-Variance_Decomposition.md)
