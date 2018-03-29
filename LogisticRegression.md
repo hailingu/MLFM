@@ -51,5 +51,6 @@ loss = & \frac{1}{n} -\sum_i [y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})] \\
 
 <center>$$\begin{align}
 \frac{\partial loss}{\partial w_j}=& -\frac{\partial loss}{\partial u}\frac{\partial u}{\partial w_j} \\
-= & \sum_i \{ \hat{y^i} - y^i \}x_{j}^i
+= & - \frac{1}{n} \sum_i [ y^i - \hat{y^i}]x_j^i] \\
+\frac{\partial loss}{\partial b} = & - \frac{1}{n} \sum_i [ y^i - \hat{y^i}] \\
 \end{align}$$</center><br/>
