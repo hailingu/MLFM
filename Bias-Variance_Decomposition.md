@@ -41,3 +41,12 @@
 &=0-0\\
 &=0
 \end{aligned}$$<center><br/>
+
+其中 $$E\int [h(x)E(f_D(x))p(x)]dx-E\int [h(x)f_D(x)p(x)]dx=0$$ 可能有点难以理解，需要注意 $$E(f_D(x))$$ 是个条件期望，而且外层的 $$E[\dots]$$ 是在训练集合 $$D$$ 上取期望，跟 $$x$$ 无关，调换一下积分顺序就能发现两式相等，实在不行可以将 $$E\int [h(x)f_D(x)p(x)]dx$$ 全部拆开，写成积分或者求和的形式，合并 $$\sum\limits_D {p(D)f_D(x)}=E(f_D(x))$$，即可得证。
+
+因此
+
+<center>$$\begin{aligned}
+E(f_D)&=E[\int {(h(x)-E(f_D(x)))^2(x)dx}] + E[\int (E(f_D(x))-f_D(x))^2p(x)dx]+E_D \iint {(y-h(x))^2p(x,y)dxdy}\\
+&=\int {(h(x)-E(f_D(x)))^2p(x)dx}+\int E[(f_D(x)-E(f_D(x)))^2]p(x)dx + \iint {(y-h(x))^2p(x,y)dxdy}\\
+&=bias^2{f_D(x)}+var{f_D(x)}+var{noise}\\ \end{aligned}$$<center><br/>
