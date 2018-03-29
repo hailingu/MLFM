@@ -5,3 +5,4 @@
   - [什么是机器学习](What_is_Machine_Learning.md)
 * [Chapter 2 Perceptron](Perceptron.md)
 * [Chapter 3 Linear Regression](LinearRegression.md)
+* [Chpater 4 Model Selection](ModelSelection.md)
