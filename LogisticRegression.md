@@ -51,8 +51,8 @@ loss_{avg} = & \frac{1}{n} -\sum_i [y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})
 
 <center>$$\begin{align}
 dw_j=& -\frac{\partial loss_{avg}}{\partial u}\frac{\partial u}{\partial w_j} \\
-= & - \frac{1}{n} \sum_i [ y^i - \hat{y^i}]x_j^i \\
-db = & - \frac{1}{n} \sum_i [ y^i - \hat{y^i}] \\
+= & - \frac{1}{n} \sum_i [ y_i - \hat{y_i}]x_{ij} \\
+db = & - \frac{1}{n} \sum_i [ y_i - \hat{y_i}] \\
 \end{align}$$</center><br/>
 
 # Gradient Descent
