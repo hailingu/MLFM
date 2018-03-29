@@ -19,3 +19,37 @@ Logistic Regression 的模型很简单，即将一个线性模型的结果作为
 在机器学习中，常把 $$g(x) = \frac{1}{1+e^{-x}}$$ 这样的函数叫做 sigmoid 函数，它能将整个实数集映射到 $$[0,1]$$ 区间上：
 
 ![f5.0.png](assets/f5.0.png)
+
+所以 Logisic Regression 可以简单的认为是 Linear Regression 加上 sigmoid 函数。
+
+# Learning Algorithm
+
+类似于线性回归，我们需要定义其 Loss 函数，在这里我们直接使用 log-loss 也就是极大似然取对数后的结果。那么对于单个样本的预测，单个样本的损失定义为：
+
+<center>$$loss(\hat{y_i},y_i)= -\{ y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})\}$$</center><br/>
+
+稍微分析一下上面的损失函数，我们会发现当真实的标签为 0 的时候，主要起作用是 \\(log(1-\hat{y_i})\\)，对于后面这一项，如果模型预测的 \\( \hat{y_i} \\) 越接近于 0 ，那么这个 loss 就越小。类似的可以分析当真实的标签为 1 的情况，这个时候起作用的就是另外一项了。这里的 log-loss 有些时候也会被称之为 Cross Entropy ， 由于到目前为止，我还没有提到什么是 Entropy，所以这里还是使用 log-loss 作为这个 Loss 的名称。
+
+当我们手上有了某一个样本的 loss 之后，我们可以得到所有样本的整体的 loss：
+
+<center>$$loss = -\{ \sum_i\{ y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})\}$$</center><br/>
+
+接下来做一些推导：
+
+<center>$$\begin{align}
+u_i=&  \mathbf{W}^T\mathbf{x^i} \\
+loss = & -\sum_i\{ y^i log(\hat{y^i}) + (1-y^i)log(1-\hat{y^i})\}\\
+=& -\sum_i \{ y^i log e^{u^i} -y_i log(e^{u^i}+1) - (1-y_i)log(e^{u^i}+1) \}\\
+=& -\sum_i \{ y^i log e^{u^i} -y_i log(e^{u^i}+1) - log(e^{u^i}+1) + y_i log(e^{u^i}+1) \} \\
+=& -\sum_i \{ y^i loge^{u^i}-log(e^{u^i}+1) \} \\
+=& -\sum_i \{ y^i{u^i}-log(e^{u^i}+1) \} \\
+\nabla u=& -\sum_i \{ y^i - \frac{e^{u^i}}{e^{u^i}+1} \} \\
+=& -\sum_i \{ y^i - \hat{y^i} \}
+\end{align}$$</center><br/>
+
+所以针对每一个具体的 \\(w_j\\)，有：
+
+<center>$$\begin{align}
+\frac{\partial loss}{\partial w_j}=& -\frac{\partial loss}{\partial u}\frac{\partial u}{\partial w_j} \\
+= & \sum_i \{ \hat{y^i} - y^i \}x_{j}^i
+\end{align}$$</center><br/>
