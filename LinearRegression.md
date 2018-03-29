@@ -91,8 +91,9 @@ Linear Regression 其实是有解析解的，这个求解解析解的方法也�
             return math.pow(y - yhat, 2)
 
         def update(self, x, y, y_hat, eta):
-            dw = -1 * np.dot(y - y_hat, x)
-            db = -1 * np.sum(y - y_hat, 0)
+            n = x.shape[0]
+            dw = -1 * np.dot(y - y_hat, x) / n
+            db = -1 * np.sum(y - y_hat, 0) / n
             self.w = self.w - eta * dw
             self.b = self.b - eta * db
 
