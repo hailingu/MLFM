@@ -7,3 +7,5 @@
 * [Chapter 3 Linear Regression](LinearRegression.md)
 * [Chpater 4 Model Selection](ModelSelection.md)
   - [Bias-Variance Decomposition](Bias-Variance_Decomposition.md)
+  - [Normalization](Normalization.md)
+  - [Regularization](Regularization.md)
