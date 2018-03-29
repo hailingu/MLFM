@@ -32,19 +32,19 @@ Logistic Regression 的模型很简单，即将一个线性模型的结果作为
 
 当我们手上有了某一个样本的 loss 之后，我们可以得到所有样本的整体的 loss：
 
-<center>$$loss_i = -[ \sum_i\{ y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})]$$</center><br/>
+<center>$$loss_i = -[ \sum_i y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})]$$</center><br/>
 
 接下来做一些推导：
 
 <center>$$\begin{align}
 u_i=&  \mathbf{w}^T\mathbf{x}_i \\
-loss = & -\sum_i [y^i log(\hat{y^i}) + (1-y^i)log(1-\hat{y^i})] \\
-=& -\sum_i [y^i log e^{u^i} -y_i log(e^{u^i}+1) - (1-y_i)log(e^{u^i}+1)] \\
-=& -\sum_i [y^i log e^{u^i} -y_i log(e^{u^i}+1) - log(e^{u^i}+1) + y_i log(e^{u^i}+1)]   \\
-=& -\sum_i [y^i loge^{u^i}-log(e^{u^i}+1)]  \\
-=& -\sum_i [y^i{u^i}-log(e^{u^i}+1)]   \\
-\nabla u=& -\sum_i [y^i - \frac{e^{u^i}}{e^{u^i}+1}]   \\
-=& -\sum_i [y^i - \hat{y^i] } 
+loss = & -\sum_i [y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})] \\
+=& -\sum_i [y_i log e^{u_i} - y_i log(e^{u_i}+1) - (1-y_i)log(e^{u_i}+1)] \\
+=& -\sum_i [y_i log e^{u^i} - y_i log(e^{u_i}+1) - log(e^{u_i}+1) + y_i log(e^{u_i}+1)]   \\
+=& -\sum_i [y_i log e^{u^i} - log(e^{u_i}+1)]  \\
+=& -\sum_i [y_i{u^i}-log(e^{u_i}+1)]   \\
+\nabla u=& -\sum_i [y_i - \frac{e^{u_i}}{e^{u_i}+1}]   \\
+=& -\sum_i [y_i - \hat{y_i] }
 \end{align}$$</center><br/>
 
 所以针对每一个具体的 \\(w_j\\)，有：
