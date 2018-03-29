@@ -50,8 +50,93 @@ Linear Regression 所要做的事情是通过给定的一组 Feature 值预测�
 
 这里采用的方法和 Perceptron 中有些许的不同，这次需要先求出所有数据 \\( \mathbf{X}\\) 上的平均 Loss：
 
-<center>$$loss_{avg} = \frac{1}{n}\sum_i(y_i-\hat{y\_i})^2$$</center><br>
+<center>$$loss_{avg} = \frac{1}{2n}\sum_i(y_i-\hat{y_i})^2$$</center><br>
 
 然后在 \\(loss_{avg}\\) 使用 GD 算法，求出对应的 \\(w\\) 和 \\(b\\)。
 
-Linear Regression 其实是有解析解的，这个求解解析解的方法也是 R 工具包中求解 \\(w\\) 和 \\(b\\) 的方式。这个求解解析解的结论是 \\( \mathbf{w} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X} \mathbf{y} \\) ，这里解析解不一定存在的很大情况是 \\(mathbf{X}\\) 是不可逆的。
+Linear Regression 其实是有解析解的，这个求解解析解的方法也是 R 工具包中求解 \\(w\\) 和 \\(b\\) 的方式。这个求解解析解的结论是 \\( \mathbf{w} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X} \mathbf{y} \\) ，这里解析解不一定存在的很大情况是 \\(mathbf{X}\\) 是不可逆的。同时解析解的算法能处理的数据集大小和维度有限，并不适合在大规模高维度数据集上使用，一般来说人们还是会使用 GD 算法和其变种，来搜索一个数据集上尽可能合理的 \\(w\\) 和 \\(b\\) 。
+
+# Gradient Descent
+
+有了 \\(loss_{avg}\\) 后，我们希望的就是这个 \\(loss_{avg}\\) 的值越小越好，也就是我们要找合适的 \\(w\\) 和 \\(b\\)，使得 \\(loss_{avg}\\) 能够取得最小的值，这个寻找过程的求解算法和 Peceptron 的一样:
+
+<center>$$\begin{align}w & = w- \eta \cdot dw \\ b & = b - \eta \cdot db\\ \end{align}$$</center><br/>
+
+\\(\eta \\) 为学习率，代表我们希望每一步走多远，分别计算之前的 \\(loss_{avg}\\) 的变量 \\(w\\) 和 \\(b\\) 所对应的 \\(dw\\) 和 \\(db\\):
+
+<center>$$\begin{align}dw = & - \frac{1}{n} \sum_i (y_i - \hat{y_i} ) \cdot x_i \\ db = & - \frac{1}{n} \sum_i (y_i - \hat{y_i} )\end{align}$$</center><br/>
+
+# Implementation
+
+首先定义 SimpleLinearRegression 类：
+
+    class SimpleLinearRegression:
+    """Simple Linear Model"""
+    w = None
+    b = None
+
+    def __init__(self):
+        self.b = 0
+
+    def __call__(self, x):
+        if self.w is None:
+            if isinstance(x, np.ndarray):
+                self.w = np.zeros((x.shape[0]))
+            else:
+                self.w = np.zeros((1,))
+
+        return np.dot(self.w, x) + self.b
+
+    def loss(self, y, yhat):
+        return math.pow(y - yhat, 2)
+
+    def update(self, x, y, y_hat, eta):
+        dw = -1 * np.dot(y - y_hat, x)
+        db = -1 * np.sum(y - y_hat, 0)
+        self.w = self.w - eta * dw
+        self.b = self.b - eta * db
+
+实现训练的逻辑：
+
+    def train(model, x, y, eta = 0.1, epoch = 1):
+        n = x.shape[0]
+        y_hat = np.zeros((y.shape[0]))
+        for i in range(epoch):
+            loss = 0
+            for j in range(n):
+                y_hat[j] = model(x[j])
+                loss += float(model.loss(y[j], y_hat[j]))
+
+            model.update(x, y, y_hat, eta)
+            print("Epoch %d, loss is: %f" % (i, loss / n))
+        print("Training End.")
+
+组合起来：
+
+    if __name__ == "__main__":
+        simplelinearmodel = SimpleLinearRegression()
+        train(simplelinearmodel, X, Y, 0.01, 1000)
+
+        plt.scatter(X, Y, color="red", linewidth=1)
+
+        yl = np.zeros((100,))
+        for i in range(100):
+            yl[i] = simplelinearmodel(X[i])
+
+        plt.plot(X, yl, color="gray", linewidth=1)
+        plt.show()
+
+        print(simplelinearmodel.w, simplelinearmodel.b)
+
+完整代码见[这里](https://github.com/hailingu/MLFM/blob/master/code/LinearRegression.py)
+
+调用 scikit-learn 的话也很简单：
+
+    from sklearn.linear_model import LinearRegression
+
+    linear_regression = LinearRegression()
+    linear_regression.fit(X.reshape((X.shape[0], 1)), Y)
+
+最后得到的直线：
+
+![f3.1.png](assets/f3.1.png)
