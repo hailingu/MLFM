@@ -32,4 +32,13 @@ Linear Regression 就是为了找到数据的 Feature 和对应 Label 之间的�
 如果把上面的 \\( \mathbf{x} \\) 更换成 \\((f_1(x_1), f_2(x_2), \ldots, f_k(x_k))\\) ，那么就变成了前面提到的广义线性模型。
 
 # Learning Algorithm
-这次的数据集合是由上面的代码生成的，所以这里就省去数据集说明的部分。
+
+这次的数据集合是由上面的代码生成的，所以这里就省去数据集说明的部分。本章节采用的例子也很简单，但是可以很容易的扩展到多维的数据上去，方法完全一样。实现 Linear Regression 的训练算法和 Perceptron 很类似，已经形成了一种
+套路，分为两步：
+
+1. 定义 Loss 函数
+2. 使用 SGD 减小 Loss 函数在数据集上的值
+
+Linear Regression 所要做的事情是通过给定的一组 Feature 值预测出它们所代表的值，这和 Perceptron 的分类任务不同，所以 Loss 函数也不同。在 Linear Regression 中，更常采用的平方 Loss 作为其损失函数，表示如下：
+
+<center>loss_i=loss(y_i,\hat{y_i}) = \frac{1}{2}(y_i - \hat y_i)^2</center><br/>
