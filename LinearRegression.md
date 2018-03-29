@@ -71,30 +71,30 @@ Linear Regression 其实是有解析解的，这个求解解析解的方法也�
 首先定义 SimpleLinearRegression 类：
 
     class SimpleLinearRegression:
-      """Simple Linear Model"""
-      w = None
-      b = None
+        """Simple Linear Model"""
+        w = None
+        b = None
 
-      def __init__(self):
-          self.b = 0
+        def __init__(self):
+            self.b = 0
 
-      def __call__(self, x):
-          if self.w is None:
-              if isinstance(x, np.ndarray):
-                  self.w = np.zeros((x.shape[0]))
-              else:
-                  self.w = np.zeros((1,))
+        def __call__(self, x):
+            if self.w is None:
+                if isinstance(x, np.ndarray):
+                    self.w = np.zeros((x.shape[0]))
+                else:
+                    self.w = np.zeros((1,))
 
-          return np.dot(self.w, x) + self.b
+            return np.dot(self.w, x) + self.b
 
-      def loss(self, y, yhat):
-          return math.pow(y - yhat, 2)
+        def loss(self, y, yhat):
+            return math.pow(y - yhat, 2)
 
-      def update(self, x, y, y_hat, eta):
-          dw = -1 * np.dot(y - y_hat, x)
-          db = -1 * np.sum(y - y_hat, 0)
-          self.w = self.w - eta * dw
-          self.b = self.b - eta * db
+        def update(self, x, y, y_hat, eta):
+            dw = -1 * np.dot(y - y_hat, x)
+            db = -1 * np.sum(y - y_hat, 0)
+            self.w = self.w - eta * dw
+            self.b = self.b - eta * db
 
 实现训练的逻辑：
 
