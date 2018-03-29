@@ -39,12 +39,12 @@ Logistic Regression 的模型很简单，即将一个线性模型的结果作为
 <center>$$\begin{align}
 u_i=&  \mathbf{w}^T\mathbf{x}_i \\
 loss = & -\sum_i [y^i log(\hat{y^i}) + (1-y^i)log(1-\hat{y^i})] \\
-=& -\sum_i \{ y^i log e^{u^i} -y_i log(e^{u^i}+1) - (1-y_i)log(e^{u^i}+1) \}\\
-=& -\sum_i \{ y^i log e^{u^i} -y_i log(e^{u^i}+1) - log(e^{u^i}+1) + y_i log(e^{u^i}+1) \} \\
-=& -\sum_i \{ y^i loge^{u^i}-log(e^{u^i}+1) \} \\
-=& -\sum_i \{ y^i{u^i}-log(e^{u^i}+1) \} \\
-\nabla u=& -\sum_i \{ y^i - \frac{e^{u^i}}{e^{u^i}+1} \} \\
-=& -\sum_i \{ y^i - \hat{y^i} \}
+=& -\sum_i [y^i log e^{u^i} -y_i log(e^{u^i}+1) - (1-y_i)log(e^{u^i}+1)] \\
+=& -\sum_i [y^i log e^{u^i} -y_i log(e^{u^i}+1) - log(e^{u^i}+1) + y_i log(e^{u^i}+1)]   \\
+=& -\sum_i [y^i loge^{u^i}-log(e^{u^i}+1)]  \\
+=& -\sum_i [y^i{u^i}-log(e^{u^i}+1)]   \\
+\nabla u=& -\sum_i [y^i - \frac{e^{u^i}}{e^{u^i}+1}]   \\
+=& -\sum_i [y^i - \hat{y^i] } 
 \end{align}$$</center><br/>
 
 所以针对每一个具体的 \\(w_j\\)，有：
