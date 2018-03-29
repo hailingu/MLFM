@@ -43,7 +43,7 @@ loss_{avg} = & \frac{1}{n} -\sum_i [y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})
 =&  - \frac{1}{n} \sum_i [y_i log e^{u_i} - y_i log(e^{u_i}+1) - log(e^{u_i}+1) + y_i log(e^{u_i}+1)]   \\
 =&  - \frac{1}{n} \sum_i [y_i log e^{u_i} - log(e^{u_i}+1)]  \\
 =&  - \frac{1}{n} \sum_i [y_i{u^i}-log(e^{u_i}+1)]   \\
-\nabla u=& -\sum_i [y_i - \frac{e^{u_i}}{e^{u_i}+1}]   \\
+\nabla u=& - \frac{1}{n} \sum_i [y_i - \frac{e^{u_i}}{e^{u_i}+1}]   \\
 =&  - \frac{1}{n} \sum_i [y_i - \hat{y_i} \\
 \end{align}$$</center><br/>
 
