@@ -2,7 +2,7 @@
 前面的内容简要的讲了机器学习的历史和一些实际使用中的机器学习问题，但是至今为止，我都没有写下什么是机器学习。跟什么是 AI 不一样，机器学习是有一个比较权威的定义的：
 
 
-> 对于某类任务 T 和性能度量 P ，如果一个计算机程序在 T 上以 P 衡量的性能随着经验 E 而自我完善，那么我们称这个计算机程序从经验 E 中学习。 -- Tom Mitchell, Machine
+> 对于某类任务 T 和性能度量 P ，如果一个计算机程序在 T 上以 P 衡量的性能随着经验 E 而自我完善，那么我们称这个计算机程序从经验 E 中学习。 -- Tom Mitchell, Machine Learning
 
 上面的定义中 T 就是机器学习模型要解决的问题， P 就是衡量这个机器学习模型性能的评价方式， E 就是经常提到的数据。这个定义很好的体现了机器学习的过程及核心要素。
 
@@ -31,4 +31,4 @@ Supervised Learning 常常有人翻译成“监督学习”。在解释什么是
 
 类似的，Unsupervised Learning的解释就很容易了，**如果机器学习模型构建的数据上的输入只有 Feature 没有 Label，那么这个模型也就是发现数据之间的关系，这样的模型就属于 _Unsupervised Learning_**。
 
-有些资料会把 Label 表述成 Response Variable，会把 Feature 表输出 Attribute , 其实都是一个意思。 
+有些资料会把 Label 表述成 Response Variable，会把 Feature 表输出 Attribute , 其实都是一个意思。
