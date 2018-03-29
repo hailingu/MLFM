@@ -63,6 +63,8 @@ db = & - \frac{1}{n} \sum_i [ y^i - \hat{y^i}] \\
 
 # Implementation
 
+这里实现的时候使用的数据集和 Perceptron 中的一致，所以不做过多的说明了。
+
 首先定义 LogisticRegression 类：
 
     class LogisticRegression:
@@ -154,3 +156,12 @@ db = & - \frac{1}{n} \sum_i [ y^i - \hat{y^i}] \\
         train(logistic_model, data[:, 0:2], data[:,2], epoch=10)
 
 完整代码见[这里](https://github.com/hailingu/MLFM/blob/master/code/LogisticRegression.py)。
+
+调用 scikit-learn 也同样容易实现:
+
+    from sklearn.linear_model import LogisticRegression
+
+    lr = LogisticRegression()
+    lr.fit(data[:, 0:2], data[:,2])
+
+其实仔细的人可以发现，在 Linear Regression 和 Logistic Regression 的 update 函数中的内容是完全一样的，同样仔细的人还会发现如今采用的评价模型的方式似乎太弱了一点，关于模型评价方式会有一整章节来介绍。
