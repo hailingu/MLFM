@@ -32,13 +32,13 @@ Logistic Regression 的模型很简单，即将一个线性模型的结果作为
 
 当我们手上有了某一个样本的 loss 之后，我们可以得到所有样本的整体的 loss：
 
-<center>$$loss = -\{ \sum_i\{ y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})\}$$</center><br/>
+<center>$$loss_i = -[ \sum_i\{ y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})]$$</center><br/>
 
 接下来做一些推导：
 
 <center>$$\begin{align}
-u_i=&  \mathbf{W}^T\mathbf{x^i} \\
-loss = & -\sum_i\{ y^i log(\hat{y^i}) + (1-y^i)log(1-\hat{y^i})\}\\
+u_i=&  \mathbf{w}^T\mathbf{x}_i \\
+loss = & -\sum_i [y^i log(\hat{y^i}) + (1-y^i)log(1-\hat{y^i})] \\
 =& -\sum_i \{ y^i log e^{u^i} -y_i log(e^{u^i}+1) - (1-y_i)log(e^{u^i}+1) \}\\
 =& -\sum_i \{ y^i log e^{u^i} -y_i log(e^{u^i}+1) - log(e^{u^i}+1) + y_i log(e^{u^i}+1) \} \\
 =& -\sum_i \{ y^i loge^{u^i}-log(e^{u^i}+1) \} \\
