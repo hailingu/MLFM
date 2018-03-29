@@ -38,7 +38,7 @@ Linear Regression 就是为了找到数据的 Feature 和对应 Label 之间的�
 套路，分为两步：
 
 1. 定义 Loss 函数
-2. 使用 SGD 减小 Loss 函数在数据集上的值
+2. 使用 GD 减小 Loss 函数在数据集上的值
 
 Linear Regression 所要做的事情是通过给定的一组 Feature 值预测出它们所代表的值，这和 Perceptron 的分类任务不同，所以 Loss 函数也不同。在 Linear Regression 中，更常采用的平方 Loss 作为其损失函数，表示如下：
 
@@ -47,3 +47,11 @@ Linear Regression 所要做的事情是通过给定的一组 Feature 值预测�
 上面的 \\( loss_i\\) 表示的第 \\(i\\) 个数据预测结果和真实结果差距，\\(\hat y_i\\) 表示第 \\(i\\) 组 Feature 其对应的模型预测结果。具体点来说，初始情况下，把 \\(\mathbf{w}\\) 初始化成 \\(\mathbf{0}\\)，把第一个点的 Feature 值输入到模型方程中，它的输出是 0，对应的平方 Loss 就是：
 
 <center>$$loss_0=loss(y_0,\hat{y_0}) = (0.77918926 - 0)^2 = 0.607135$$</center><br/>
+
+这里采用的方法和 Perceptron 中有些许的不同，这次需要先求出所有数据 \\( \mathbf{X}\\) 上的平均 Loss：
+
+<center>$$loss_{avg} = \frac{1}{n}\sum_i(y_i-\hat{y\_i})^2$$</center><br>
+
+然后在 \\(loss_{avg}\\) 使用 GD 算法，求出对应的 \\(w\\) 和 \\(b\\)。
+
+Linear Regression 其实是有解析解的，这个求解解析解的方法也是 R 工具包中求解 \\(w\\) 和 \\(b\\) 的方式。这个求解解析解的结论是 \\( \mathbf{w} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X} \mathbf{y} \\) ，这里解析解不一定存在的很大情况是 \\(mathbf{X}\\) 是不可逆的。
