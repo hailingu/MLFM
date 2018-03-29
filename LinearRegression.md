@@ -128,7 +128,7 @@ Linear Regression 其实是有解析解的，这个求解解析解的方法也�
 
         print(simplelinearmodel.w, simplelinearmodel.b)
 
-完整代码见[这里](https://github.com/hailingu/MLFM/blob/master/code/LinearRegression.py)
+完整代码见[这里](https://github.com/hailingu/MLFM/blob/master/code/LinearRegression.py)。
 
 调用 scikit-learn 的话也很简单：
 
