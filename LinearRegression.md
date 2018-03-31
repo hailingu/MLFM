@@ -141,3 +141,13 @@ Linear Regression 其实是有解析解的，这个求解解析解的方法也�
 最后得到的直线：
 
 ![f3.1.png](assets/f3.1.png)
+
+当然从统计学的角度来说，Linear Regression 远没有上面描述的这么的简单，它还涵盖了其他的许多的内容。从统计学的习惯来表示 Linear Regression 更多的是 $$y_i = \mathbf{x}_i^T \cdot \mathbf{w} + \epsilon$$
+
+在统计学中，使用平方损失而不是其他损失是有前提假设条件的，而在实际的使用中我们常会去检查其中的部分条件，因为有些假设条件是没办法的做检查的：
+
+* 无限次测量后 $$\epsilon$$ 的平均值为 0。
+* $$\epsilon$$ 的方差为常数。
+* 多次测量的 $$\epsilon$$ 之间相互独立。
+* $$\epsilon$$ 和 变量 $$\mathbf{x}$$ 无关。
+* $$\epsilon$$ 服从正态分布
