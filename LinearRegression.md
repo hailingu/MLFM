@@ -54,7 +54,7 @@ Linear Regression 所要做的事情是通过给定的一组 Feature 值预测�
 
 然后在 \\(loss_{avg}\\) 使用 GD 算法，求出对应的 \\(w\\) 和 \\(b\\)。
 
-Linear Regression 其实是有解析解的，这个求解解析解的方法也是 R 工具包中求解 \\(w\\) 和 \\(b\\) 的方式。这个求解解析解的结论是 \\( \mathbf{w} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X} \mathbf{y} \\) ，这里解析解不一定存在的很大情况是 \\(\mathbf{X}\\) 是不可逆的。同时解析解的算法能处理的数据集大小和维度有限，并不适合在大规模高维度数据集上使用，一般来说人们还是会使用 GD 算法和其变种，来搜索一个数据集上尽可能合理的 \\(w\\) 和 \\(b\\) 。
+Linear Regression 其实是 closed form 的，这个求解解析解的方法也是 R 工具包中求解 \\(w\\) 和 \\(b\\) 的方式。这个求解  closed form  的结论是 \\( \mathbf{w} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X} \mathbf{y} \\) ，这里  closed form  不一定存在的很大情况是 \\(\mathbf{X}\\) 是不可逆的。同时解析解的算法能处理的数据集大小和维度有限，并不适合在大规模高维度数据集上使用，一般来说人们还是会使用 GD 算法和其变种，来搜索一个数据集上尽可能合理的 \\(w\\) 和 \\(b\\) 。
 
 # Gradient Descent
 
