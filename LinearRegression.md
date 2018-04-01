@@ -58,7 +58,7 @@ Linear Regression 其实是有 closed form 的，这个求解 closed form  的�
 
 # Gradient Descent
 
-有了 \\(loss_{avg}\\) 后，我们希望的就是这个 \\(loss_{avg}\\) 的值越小越好，也就是我们要找合适的 \\(w\\) 和 \\(b\\)，使得 \\(loss_{avg}\\) 能够取得最小的值，这个寻找过程的求解算法和 Peceptron 的一样:
+有了 $$loss_{avg}$$ 后，我们希望的就是这个 $$loss_{avg}$$ 的值越小越好，也就是我们要找合适的 \\(w\\) 和 \\(b\\)，使得 \\(loss_{avg}\\) 能够取得最小的值，这个寻找过程的求解算法和 Peceptron 的一样:
 
 <center>$$\begin{align}w & = w- \eta \cdot dw \\ b & = b - \eta \cdot db\\ \end{align}$$</center><br/>
 
