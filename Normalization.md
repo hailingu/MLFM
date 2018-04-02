@@ -28,7 +28,7 @@ normalization 有不少的优点：
 
   最常见的标准化方法，也叫标准差标准化：
 
-<center>$$x^* = \frac{x - \mu }\sigma}$$</center><br/>
+<center>$$x^* = \frac{x - \mu }{\sigma}$$</center><br/>
 
 其中 $$\mu$$ 为样本均值，$$\sigma$$ 为样本标准差，此标准化方法适用于难于获得最大值和最小值的情况，优点是不改变样本的分布。
 
