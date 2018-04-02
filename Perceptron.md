@@ -83,7 +83,7 @@ db = y_i / ||w||_2 \end{array}$$</center> <br />
 
     import numpy as np
 
-    class Perceptron(object):
+    class Perceptron:
         """Perceptron Model"""
 
         w = None
