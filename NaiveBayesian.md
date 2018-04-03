@@ -17,7 +17,7 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
 
 另一个需要了解的知识就是联合概率的 chain rule：
 
-<center>$$\begin{array}\ P(C_k, x_1, \ldots, x_n) = & P(x_1 | x_2, \ldots, x_n, C_k) P(x_2, \ldots, x_n, C_k) \\ = & P(x_1 | x_2, \ldots, x_n, C_k) P(x_2 | x_3, \ldots, x_n, C_k) \\ = & \dots \\ = & P(x_1 | x_2, \ldots, x_n, C_k) \ldots P(x_{n-1} | x_n, C_k) P(x_n | C_k) P(C_K) \end{array} $$</center><br/>
+<center>$$\begin{array}\ P(C_k, x_1, \ldots, x_n) & = & P(x_1 | x_2, \ldots, x_n, C_k) P(x_2, \ldots, x_n, C_k) \\ & = & P(x_1 | x_2, \ldots, x_n, C_k) P(x_2 | x_3, \ldots, x_n, C_k) \\ & = & \dots \\ & = & P(x_1 | x_2, \ldots, x_n, C_k) \ldots P(x_{n-1} | x_n, C_k) P(x_n | C_k) P(C_K) \end{array} $$</center><br/>
 
 在 naive bayesian 中假定每个 Feature 之间是__相互独立的__，所以就存在如下关系：
 
