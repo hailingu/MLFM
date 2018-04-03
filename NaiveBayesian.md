@@ -35,7 +35,13 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
 
 计算完成上面的结果后，对于一个新到来的数据根据其输入的 Feature 利用 naive bayesian 计算其属于每一个 $$C_k$$ 的概率，然后选择最大的 $$C_k$$ 作为其最后的分类。
 
-通过前面的描述中，细心的人可能发现了 naive bayesian 对于连续的数据似乎不那么友好，的确，在使用这个方法的时候需要事先对那些取值连续的 Feature 进行离散化，然后再使用 navie bayesian 算法。同时，由于 navie bayesian 中，每一次分类判断的时候分母都是一样的，所以在实际的计算中，可以忽略掉分母，只计算分子的部分。在 navie bayesian 的分子中 $$P(x_1|C_k) \ldots P(x_n | C_k) P(C_k)$$ 可以被视为 likelihood ， 而 $$P(C_k)$$ 可以被视为先验概率，那么这样 naive bayesian 又可以表述成：
+通过前面的描述中，细心的人可能发现了 naive bayesian 对于连续的数据似乎不那么友好，的确，在使用这个方法的时候需要事先对那些取值连续的 Feature 进行离散化，然后再使用 navie bayesian 算法。同时，由于 navie bayesian 中，每一次分类判断的时候分母都是一样的，所以在实际的计算中，可以忽略掉分母，只计算分子的部分。还需要注意的是，在计算 $$P(C_k), P(x_i|C_k)$$ 的时候很有可能出现为结果为 0 的情况下，如果这个分类真的不可能存在结果为 0 是正常的，但是我们不是上帝视角，无法知道某个通过上述计算方法计算出来的分类是不是真的不存在，这个时候就会采用一个 Laplace smoothing 的技术，使得 $$P(C_k), P(x_i|C_k)$$ 不为 0 ：
+
+<center>$$ P(x_i = a_i|C_k) = \frac{\sum I(x_i = a_i, C_k) + \lambda}{\sum I(C_k) + m \lambda}$$</center><br/>
+
+其中 $$m$$ 代表 Feature 的数量。
+
+在 navie bayesian 的分子中 $$P(x_1|C_k) \ldots P(x_n | C_k) P(C_k)$$ 可以被视为 likelihood ， 而 $$P(C_k)$$ 可以被视为先验概率，那么这样 naive bayesian 又可以表述成：
 
 <center>$$P(C_k|\mathbf{X})=\frac{likelihood \times prior}{evidence}$$</center><br/>
 
