@@ -45,4 +45,4 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
 
 <center>$$P(C_k|\mathbf{X})=\frac{likelihood \times prior}{evidence}$$</center><br/>
 
-所以最后选择的那个分类，其实是看到实际的 Feature 后的最大后验分类。写成上面的式子还有一个好处，可以用其他的概率分布来替换上面使用的古典概率模型的 likelihood ，比如可以假设 $$P(x | C_k) = \frac{1}{\sqrt{2 \pi \sigma_k^2}} exp {- \frac{(x-\mu_k)^2}{2 \sigma_k^2}} $$ 是 Gaussian Distribution，当然还可以用其他的分布来替换这部分，替换后要做的就是计算对应分布的参数估计。
+所以最后选择的那个分类，其实是看到实际的 Feature 后的最大后验分类。写成上面的式子还有一个好处，可以用其他的概率分布来替换上面使用的古典概率模型的 likelihood ，比如可以假设 $$P(x | C_k) = \frac{1}{\sqrt{2 \pi \sigma_k^2}} exp \{- \frac{(x-\mu_k)^2}{2 \sigma_k^2}\} $$ 是 Gaussian Distribution，当然还可以用其他的分布来替换这部分，替换后要做的就是计算对应分布的参数估计。
