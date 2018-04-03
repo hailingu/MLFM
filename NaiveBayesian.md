@@ -27,4 +27,12 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
 
 <center>$$\begin{array}\ P(C_k|x_1, \ldots, x_n) = & \frac{P(x_1, \ldots, x_n, C_k)}{P(x_1, \ldots, x_n)} = & \frac{P(x_1|C_k) \ldots P(x_n | C_k) P(C_k)}{P(x_1) \ldots P(x_n)} \\ \end{array} $$</center><br/>
 
-上面这个式子，其实就是 naive bayesian 了。用稍微正式点的方式来描述就是：
+上面这个式子，其实就是 naive bayesian 了。完成 naive bayesian 需要做的几件事情:
+
+* 计算每一个 Feature 的每一个取值 $$P(x_i|C_k)$$ 的值。
+* 计算每一个 Feature 的每一个取值 $$P(x_i)$$ 的值。
+* 计算 $$P(C_k)$$ 的值，由于 $$P(C_k)$$ 是一个先验的概率值，事先并不知道，可以统计训练的数据中 $$P(C_k)$$ 做为先验的概率。
+
+计算完成上面的结果后，对于一个新到来的数据根据其输入的 Feature 利用 naive bayesian 计算其属于每一个 $$C_k$$ 的概率，然后选择最大的 $$C_k$$ 作为其最后的分类。
+
+通过前面的描述中，细心的人可能发现了 naive bayesian 对于连续的数据似乎不那么友好，的确，在使用这个方法的时候需要事先对那些取值连续的 Feature 进行离散化，然后再使用 navie bayesian 算法。同时，由于 navie bayesian 中，每一次分类判断的时候分母都是一样的，所以在实际的计算中，可以忽略掉分母，只计算分子的部分。
