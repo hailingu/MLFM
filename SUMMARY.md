@@ -10,3 +10,4 @@
   - [Normalization](Normalization.md)
   - [Regularization](Regularization.md)
 * [Chapter 5 Logistic Regression](LogisticRegression.md)
+* [Chapter 6 Naive Bayesian](NaiveBayesian.md)
