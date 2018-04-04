@@ -64,7 +64,7 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
         total = 0
         lmbd = 0
 
-        def __init__(self, lmbd):
+        def __init__(self, lmbd = 0):
           self.lmbd = lmbd
 
         def __call__(self, x):
