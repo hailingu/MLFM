@@ -47,4 +47,80 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
 
 所以最后选择的那个分类，其实是看到实际的 Feature 后的最大后验分类。写成上面的式子还有一个好处，可以用其他的概率分布来替换上面使用的古典概率模型的 likelihood ，比如可以假设 $$P(x | C_k) = \frac{1}{\sqrt{2 \pi \sigma_k^2}} exp \{- \frac{(x-\mu_k)^2}{2 \sigma_k^2}\} $$ 是 Gaussian Distribution，当然还可以用其他的分布来替换这部分，替换后要做的就是计算对应分布的参数估计，这时候就需要注意的是不同的分布，其参数的估计方式不太一样。
 
+# Data Set
+
+下面实现过程中所使用的数据集是 Iris.csv ，它很容易在网上获取， 这个数据集只有 50 个数据，4 个维度。
+
+
 # Implementation
+
+首先定义 NaiveBayesian 类：
+
+    class NaiveBayesian:
+        """naive bayesian model"""
+
+        d1 = {}
+        d2 = {}
+        total = 0
+        lmbd = 0
+
+        def __init__(self, lmbd):
+          self.lmbd = lmbd
+
+        def __call__(self, x):
+            predict = {}
+            prior = {}
+
+            for j in self.d1.keys():
+                prior[j] = float(self.d1[j]) / self.total
+
+                likelihood = 1
+                for i in range(x.shape[0]):
+                    condition_key = "dim_" + str(i) + "|" + j
+                    if condition_key in self.d2.keys():
+                        if x[i] in self.d2[condition_key].keys():
+                            likelihood = likelihood * float(self.d2[condition_key][x[i]] / self.d1[j])
+                        else:
+                            likelihood = 0
+                            break
+
+                predict[j] = likelihood * prior[j]
+            return max(predict, key=predict.get)
+
+        def update(self, x, y, dim):
+            self.total += 1
+
+            if y in self.d1.keys():
+                self.d1[y] = self.d1[y] + 1
+            else:
+                self.d1[y] = 1
+
+            for i in range(dim):
+                condition_key = "dim_" + str(i) + "|" + str(y)
+                if condition_key in self.d2.keys():
+                    if x[i] in self.d2[condition_key].keys():
+                        self.d2[condition_key][x[i]] = self.d2[condition_key][x[i]] + 1
+                    else:
+                        self.d2[condition_key][x[i]] = 1
+                else:
+                    self.d2[condition_key] = {}
+                    self.d2[condition_key][x[i]] = 1
+
+再定义训练逻辑：
+
+    def train(model, x, y):
+      size = x.shape[0]
+      dim = x.shape[1]
+      for i in range(size):
+          model.update(x[i], y[i], dim)
+
+最后组合起来：
+
+    if __name__ == "__main__":
+      data = (pd.read_csv('data/Iris.csv', sep=',', header=0)).values
+      naive_bayesian_model = NaiveBayesian()
+      train(naive_bayesian_model, data[:,1:-1], data[:, -1:].reshape(data.shape[0]))
+
+这里的悬链逻辑很简单，主要的工作都由模型的 update 函数完成了。从代码中还可以发现， naive bayesian 可以直接适用于 online learning ， 它每次遇到一个新的数据就对自身的统计参数做出修改。在实现的过程中，需要注意的是参数估计的计算不要算错了。
+
+完整的代码在[这里](https://github.com/hailingu/MLFM/blob/master/code/NaiveBayesian.py)
