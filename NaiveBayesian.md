@@ -123,4 +123,4 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
 
 这里的悬链逻辑很简单，主要的工作都由模型的 update 函数完成了。从代码中还可以发现， naive bayesian 可以直接适用于 online learning ， 它每次遇到一个新的数据就对自身的统计参数做出修改。在实现的过程中，需要注意的是参数估计的计算不要算错了。
 
-完整的代码在[这里](https://github.com/hailingu/MLFM/blob/master/code/NaiveBayesian.py)
+完整的代码在[这里](https://github.com/hailingu/MLFM/blob/master/code/NaiveBayesian.py)。
