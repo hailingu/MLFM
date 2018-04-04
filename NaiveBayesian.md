@@ -80,7 +80,8 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
                     if condition_key in self.d2.keys():
                         if x[i] in self.d2[condition_key].keys():
                             likelihood = likelihood * \
-                                         float(self.d2[condition_key][x[i]] + self.lmbd / self.d1[j] + self.lmbd * x.shape[0])
+                                         float(self.d2[condition_key][x[i]] + self.lmbd
+                                           / self.d1[j] + self.lmbd * x.shape[0])
                         else:
                             likelihood = 0
                             break
