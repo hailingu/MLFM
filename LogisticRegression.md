@@ -26,7 +26,7 @@ Logistic Regression 的模型很简单，即将一个线性模型的结果作为
 
 类似于线性回归，我们需要定义其 Loss 函数，在这里我们直接使用 log-loss 也就是极大似然取对数后的结果。那么对于单个样本的预测，单个样本的损失定义为：
 
-<center>$$loss(\hat{y_i},y_i)= -\{ y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})\}$$</center><br/>
+<center>$$loss(\hat{y_i},y_i)= -[ y_i log(\hat{y_i}) + (1-y_i)log(1-\hat{y_i})]$$</center><br/>
 
 稍微分析一下上面的损失函数，我们会发现当真实的标签为 0 的时候，主要起作用是 \\(log(1-\hat{y_i})\\)，对于后面这一项，如果模型预测的 \\( \hat{y_i} \\) 越接近于 0 ，那么这个 Loss 就越小。类似的可以分析当真实的标签为 1 的情况，这个时候起作用的就是另外一项了。这里的 log-loss 有些时候也会被称之为 Cross Entropy ， 由于到目前为止，我还没有提到什么是 Entropy，所以这里还是使用 log-loss 作为这个 Loss 的名称。
 

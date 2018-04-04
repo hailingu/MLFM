@@ -17,7 +17,7 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
 
 另一个需要了解的知识就是联合概率的 chain rule：
 
-<center>$$\begin{array}\ P(C_k, x_1, \ldots, x_n) & = & P(x_1 | x_2, \ldots, x_n, C_k) P(x_2, \ldots, x_n, C_k) \\ & = & P(x_1 | x_2, \ldots, x_n, C_k) P(x_2 | x_3, \ldots, x_n, C_k) \\ & = & \dots \\ & = & P(x_1 | x_2, \ldots, x_n, C_k) \ldots P(x_{n-1} | x_n, C_k) P(x_n | C_k) P(C_K) \end{array} $$</center><br/>
+<center>$$\begin{array}\ P(C_k, x_1, \ldots, x_n) & = & P(x_1 | x_2, \ldots, x_n, C_k) P(x_2, \ldots, x_n, C_k) \\ & = & P(x_1 | x_2, \ldots, x_n, C_k) P(x_2 | x_3, \ldots, x_n, C_k) \\ & = & \dots \\ & = & P(x_1 | x_2, \ldots, x_n, C_k) \ldots P(x_{n-1} | x_n, C_k) P(x_n | C_k) P(C_k) \end{array} $$</center><br/>
 
 在 naive bayesian 中假定每个 Feature 之间是__相互独立的__，所以就存在如下关系：
 
@@ -45,4 +45,6 @@ $$P(A|B)$$ 是条件概率，给出当事件 $$B$$ 发生的时候，事件 $$A$
 
 <center>$$P(C_k|\mathbf{X})=\frac{likelihood \times prior}{evidence}$$</center><br/>
 
-所以最后选择的那个分类，其实是看到实际的 Feature 后的最大后验分类。写成上面的式子还有一个好处，可以用其他的概率分布来替换上面使用的古典概率模型的 likelihood ，比如可以假设 $$P(x | C_k) = \frac{1}{\sqrt{2 \pi \sigma_k^2}} exp \{- \frac{(x-\mu_k)^2}{2 \sigma_k^2}\} $$ 是 Gaussian Distribution，当然还可以用其他的分布来替换这部分，替换后要做的就是计算对应分布的参数估计。
+所以最后选择的那个分类，其实是看到实际的 Feature 后的最大后验分类。写成上面的式子还有一个好处，可以用其他的概率分布来替换上面使用的古典概率模型的 likelihood ，比如可以假设 $$P(x | C_k) = \frac{1}{\sqrt{2 \pi \sigma_k^2}} exp \{- \frac{(x-\mu_k)^2}{2 \sigma_k^2}\} $$ 是 Gaussian Distribution，当然还可以用其他的分布来替换这部分，替换后要做的就是计算对应分布的参数估计。接下来，遵照习惯，实现一个自己的 naive bayesian 分类器。
+
+# Implementation
