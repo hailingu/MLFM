@@ -62,8 +62,8 @@ Perceptron 是一个线性模型，由几何知识可以得到，如果存在一
 
 如果发现计算出来的距离结果不符合期望，那么可以采用 SGD 来降低这个损失：
 
-<center>$$\begin{array}\ dw_j = \frac{y_i \cdot x_{ij} \cdot {||w||}_2 - \frac{w_j \cdot (w \cdot x + b)}{{||w||}_2} }{||w||^2_2} = y_i \cdot x_{ij} / {||w||}_2 - w_j \cdot (w \cdot x + b) / ||w||^3_2 \\
-db = y_i / {||w||}_2 \end{array}$$</center> <br />
+<center> $$\begin{array}\ dw_j = \frac{y_i \cdot x_{ij} \cdot {||w||}_2 - \frac{w_j \cdot (w \cdot x + b)}{ {||w||}_2 } }{ {||w||}_2^2 } = y_i \cdot x_{ij} / {||w||}_2 - w_j \cdot (w \cdot x + b) / ||w||^3_2 \\
+db = y_i / {||w||}_2 \end{array} $$</center> <br />
 
 如果不考虑 $${||w||}_2$$，上面式子变得更加简单，且对结果没有影响，计算也变得简单了:
 
