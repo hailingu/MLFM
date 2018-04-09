@@ -56,4 +56,8 @@ $$\mathbf{w}^{(2)}$$ 表示第二层，也就是输出层的权重向量。$$\ma
 
 要求解 $$\mathbf{w}^{(2)}$$ 的值，根据 calculus 中的 chain rule：
 
-<center>$$ \frac{\partial loss_i}{\partial w^2_m} = \frac{\partial loss_i}{\partial \delta^{(2)} \frac{\partial \delta^{(2)}{\partial w^2_m}$$</center><br/>
+<center>$$ \frac{\partial loss_i}{\partial w^{(2)}_m} = \frac{\partial loss_i}{\partial \delta^{(2)} \frac{\partial \delta^{(2)}{\partial w^{(2)}_m}$$</center><br/>
+
+那么要求解 $$\mathbf{w}^{(1)}_{1m}$$ 的值，用上面类似的办法：
+
+<center>$$ \frac{\partial loss_i}{\partial w^{(1)}_{1m}} = \frac{\partial loss_i}{\partial \delta^{(2)} \frac{\partial \delta^{(2)}{\partial a^{(1)}_1} \frac{\partial a^{(1)}_1}{\partial z^{(1)}_1} \frac{\partial z^{(1)}_1}{\partial w^{(1)}_{1m}}$$</center><br/>
