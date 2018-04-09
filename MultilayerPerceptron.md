@@ -34,7 +34,7 @@ $$\mathbf{w}^{(2)}$$ 表示第二层，也就是输出层的权重向量。$$\ma
 
 那么相应的第一层 h1 节点上的 model 就可以写成了：
 
-<center>$$  $$a^{(1)}=\delta^{(1)}_1(\mathbf{w}^{(1)}_1 \cdot \mathbf{x} + b^{(1)}) $$ </center><br/>
+<center>$$  a^{(1)}=\delta^{(1)}_1(\mathbf{w}^{(1)}_1 \cdot \mathbf{x} + b^{(1)}) $$ </center><br/>
 
 把输入数据完整的传过整个 Multilayer Perceptron 得到最后的输出结果的过程，叫做前向传播；而用于确定每一层节点上权重向量值的过程则叫做反向传播。
 
