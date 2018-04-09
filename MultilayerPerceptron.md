@@ -21,4 +21,12 @@ Perceptron 有一个不能解决问题，它不能解决 XOR 这样的问题。 
 
 ![f7.2.png](assets/f7.2.png)
 
-这个网络的结构来自于 Ian 的 Deep Learning 第 6 章。
+这个多层结构来自于 Ian 的 Deep Learning 第 6 章。
+
+# Model
+
+这个解决 XOR 问题的 Multilayer Perceptron ，其对应的 model 一层层的来看。先看最后一层，它接收两个输入，所以可以直接定义为：
+
+<center> $$y=\mathbf{w}^2 \cdot \mathbf{a}^2 + b $$ </center><br>
+
+如果对比前面的 Perceptron 中 model 的定义，上面的这个东西之前的定义一模一样，唯一不同的多了个上标，这里的上标表示第 2 层，也就是输出层（由于输入层没有做任何事情，可以忽略）。
