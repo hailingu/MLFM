@@ -26,20 +26,6 @@ Perceptron 有一个不能解决问题，它不能解决 XOR 这样的问题。 
 
 这个解决 XOR 问题的 Multilayer Perceptron ，其对应的 model 一层层的来看。先看最后一层，它接收两个输入，所以可以直接定义为：
 
-<center> $$y=\mathbf{w}^T_2 \cdot \mathbf{a}_1 + b_2 $$ </center><br/>
+<center> $$y=\mathbf{w}^{(2)} \cdot \mathbf{a}^{(1)} + b^{(2)} $$ </center><br/>
 
-如果对比前面的 Perceptron 中 model 的定义，上面的这个东西之前的定义一模一样，这里的下标表示第 2 层，也就是输出层（由于输入层没有做任何事情，可以忽略）。同样的在前面的 Perceptron 最后的输出结果中，令其输出大于的时候结果为 1 ， 其他的时候结果为 0 。现在把这部分分段函数处理定义成一个函数，在 Neural Network 中称之为激活函数，这里也保留这个说法，表示成 $$\delta$$ 。那上面的第二层的 model 就可以改写为：
-
-<center> $$y=\delta(\mathbf{w}^T_2 \cdot \mathbf{a}_1 + b_2)$$ </center><br/>
-
-上面的 $$\mathbf{a}_1$$ 表示第一层的 Perceptron 输出后的结果，如果来自于第一层第一个 Perceptron ，那么就记成 $$a_{11}$$ ，在当前的 XOR 问题下，$$\mathbf{a}_1 = (a_{11}, a_{12})$$。类似的同样的步骤，可以应用到第一层的第一个 Perceptron 上，即：
-
-<center> $$ a_{11} = \delta(\mathbf{w}^T_{11} \cdot \mathbf{x} + b_{11}) $$</center><br/>
-
-如果我们要计算给定输入所对应的输出的话，可以把输入输入到网络中，从下到上依次计算其输出结果，通常把这个过长叫做前向传播，而后面确定学习算法的时候则会采用反向传播。
-
-# Learning Algorithm
-
-和前面提到的各个模型一样（当然除了 Naive Bayesian ），这里需要定义一个 Loss 函数，由于上面设计的 XOR 网络的第二层唯一的节点仍然是一个 Perceptron ，那么可以直接拿 Perceptron 的 Loss 函数使用，应用过来后是这个样子：
-
- <center> $$ loss_2^i = y_i (\mathbf{w}^T_2 \cdot \mathbf{a}^i_1 + b_2 ) $$</center><br/>
+$$\mathbf{w}^{(2)}$$ 表示第二层，也就是输出层的权重向量。
