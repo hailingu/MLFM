@@ -46,7 +46,7 @@ $$\mathbf{w}^{(2)}$$ 表示第二层，也就是输出层的权重向量。$$\ma
 
 而激活函数就采用一个叫做 Relu 的函数：
 
-<center>$$ Relu(x)=\begin{cases} x, if x \gt 0 \\ 0,\ otherwise\end{cases} $$</center><br/>
+<center>$$ Relu(x)=\begin{cases} x, if\ \  x \gt 0 \\ 0,\ otherwise \end{cases} $$</center><br/>
 
 为什么不采用原来的 Perceptron 的函数呢，因为从过去到现在即将采用的计算权重的方法都是基于梯度的，但是原始的 Perceptron 最后的函数计算梯度的时候，输入变量的梯度会变成 0 ，这种情况下，当计算完第二层的梯度后，没办法得到第一层的梯度信息，也就无法更新第一层的权重向量。上面一句话透露了即将要给出的反向传播算法的思路，即根据最终的 Loss ，计算每一层的每一个节点对这个 Loss 的贡献程度，而这个贡献程度得通过从输出层的结果层层向输入层的方向进行传播，得到中间层梯度信息，然后和前面提到的 Gradient Descent 一样，更新当前节点的权重。那么具体是如何做的呢？ XOR 的问题很小，可以进行仔细的推导，这个推导的过程同样可以应用到更多层的网络结构中去。
 
@@ -56,8 +56,8 @@ $$\mathbf{w}^{(2)}$$ 表示第二层，也就是输出层的权重向量。$$\ma
 
 要求解 $$\mathbf{w}^{(2)}$$ 的值，根据 calculus 中的 chain rule：
 
-<center>$$ \frac{\partial loss_i}{\partial w^{(2)}_m} = \frac{\partial loss_i}{\partial \delta^{(2)} \frac{\partial \delta^{(2)}{\partial w^{(2)}_m}$$</center><br/>
+<center>$$ \frac{\partial loss_i}{\partial w^{(2)}_m} = \frac{\partial loss_i}{\partial \delta^{(2)}} \frac{\partial \delta^{(2)}}{\partial z^{(2)}} \frac{\partial z^{(2)}}{\partial w^{(2)}_m}$$</center><br/>
 
 那么要求解 $$\mathbf{w}^{(1)}_{1m}$$ 的值，用上面类似的办法：
 
-<center>$$ \frac{\partial loss_i}{\partial w^{(1)}_{1m}} = \frac{\partial loss_i}{\partial \delta^{(2)} \frac{\partial \delta^{(2)}{\partial a^{(1)}_1} \frac{\partial a^{(1)}_1}{\partial z^{(1)}_1} \frac{\partial z^{(1)}_1}{\partial w^{(1)}_{1m}}$$</center><br/>
+<center>$$ \frac{\partial loss_i}{\partial w^{(1)}_{1m}} =  \frac{\partial loss_i}{\partial \delta^{(2)}} \frac{\partial \delta^{(2)}}{\partial z^{(2)}} \frac{\partial z^{(2)}}{\partial a_1^{(1)}} \frac{\partial a_1^{(1)}}{\partial z_1^{(1)}}  \frac{z_1^{(1)}}{\partial w^{(1)}_{1m}}$$</center><br/>
