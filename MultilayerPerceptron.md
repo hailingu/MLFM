@@ -30,4 +30,30 @@ Perceptron 有一个不能解决问题，它不能解决 XOR 这样的问题。 
 
 $$\mathbf{w}^{(2)}$$ 表示第二层，也就是输出层的权重向量。$$\mathbf{a}^{(1)}$$ 表示第一层的输出的结果，即 $$\mathbf{a}^{(1)} = (a^{(1)}_1,a^{(1)}_2 )$$，$$z^{(2)}$$ 则表示线性变换后的中间结果。同样在前面的 Perceptron 最后的输出结果中，令其输出大于的时候结果为 1 ， 其他的时候结果为 0 。现在把这部分分段函数处理定义成一个函数，在 Neural Network 中称之为激活函数，这里也保留这个说法，表示成 $$\delta$$ 。那上面的第二层的 model 就可以改写为：
 
-<center> $$y=\delta^{(2)}(\mathbf{w}^{(2)} \cdot \mathbf{a}^{(1)} + b^{(2)})$$ </center><br/>
+<center> $$a^{(2)}=\delta^{(2)}(\mathbf{w}^{(2)} \cdot \mathbf{a}^{(1)} + b^{(2)}) = \delta^{(2)}(z^{(2)})$$ </center><br/>
+
+那么相应的第一层 h1 节点上的 model 就可以写成了：
+
+<center>$$  $$a^{(1)}=\delta^{(1)}_1(\mathbf{w}^{(1)}_1 \cdot \mathbf{x} + b^{(1)}) $$ </center><br/>
+
+把输入数据完整的传过整个 Multilayer Perceptron 得到最后的输出结果的过程，叫做前向传播；而用于确定每一层节点上权重向量值的过程则叫做反向传播。
+
+# Learning Algorithm
+
+机器学习最重要的其实是根据训练目标来设计合理的 Loss 函数，这里的 XOR 问题虽然是一个分类问题，但是这一次可以采用回归的思路来解决。当然可以代入第二章的 Perceptron 的 Loss 函数，然后训练得到整个 Multilayer Perceptron ， 两种方式的 Loss 函数虽然不一样，但是求解权重向量的思路却是一样的。这里采用的 Loss 函数是：
+
+<center>$$ loss_i = loss(y_i,\hat{y_i}) = \frac{1}{2}(y_i-\hat{y_i})^2$$</center><br/>
+
+而激活函数就采用一个叫做 Relu 的函数：
+
+<center>$$ Relu(x)=\begin{cases} x, if x \gt 0 \\ 0,\ otherwise\end{cases} $$</center><br/>
+
+为什么不采用原来的 Perceptron 的函数呢，因为从过去到现在即将采用的计算权重的方法都是基于梯度的，但是原始的 Perceptron 最后的函数计算梯度的时候，输入变量的梯度会变成 0 ，这种情况下，当计算完第二层的梯度后，没办法得到第一层的梯度信息，也就无法更新第一层的权重向量。上面一句话透露了即将要给出的反向传播算法的思路，即根据最终的 Loss ，计算每一层的每一个节点对这个 Loss 的贡献程度，而这个贡献程度得通过从输出层的结果层层向输入层的方向进行传播，得到中间层梯度信息，然后和前面提到的 Gradient Descent 一样，更新当前节点的权重。那么具体是如何做的呢？ XOR 的问题很小，可以进行仔细的推导，这个推导的过程同样可以应用到更多层的网络结构中去。
+
+在当前的设定下，由于要当成一个回归问题的 Loss 函数求解整个网络的权重向量的值，那么最后一层的激活函数就相应的改成 $$\delta^{(2)}(x) = x$$ ，第一层的两个节点的激活函数就采用 Relu。那么对于数据 $$\mathbf{x_i}$$ ， 其最后的 $$loss_i$$ 有：
+
+<center>$$loss_i = \frac{1}{2}(y_i-\hat{y_i})^2 = \frac{1}{2}(y_i - \delta^{(2)}(\mathbf{w}^{(2)} \cdot \mathbf{a}^{(1)} + b^{(2)}))$$</center><br/>
+
+要求解 $$\mathbf{w}^{(2)}$$ 的值，根据 calculus 中的 chain rule：
+
+<center>$$ \frac{\partial loss_i}{\partial w^2_m} = \frac{\partial loss_i}{\partial \delta^{(2)} \frac{\partial \delta^{(2)}{\partial w^2_m}$$</center><br/>
