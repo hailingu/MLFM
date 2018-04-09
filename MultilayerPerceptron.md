@@ -11,4 +11,14 @@ Perceptron 有一个不能解决问题，它不能解决 XOR 这样的问题。 
 解决非线性的问题，需要暂时提到一个已经证明的结论__经过有限次组合固定的单变量的线性函数，加上仿射变换，可以逼近任何的 n 元变量的连续函数__（稍微详细的说明，有空的话写在本节的附录部分）。注意到这个结论中没有要求连续函数是线性的，也就是已本 GitBook 已经提到的内容，可以通过有限次的组合 Perceptron 就能够逼近一个能够解决问题的非线性函数。看到这个结论，是不是有些人说，那么是不是说 Multilayer Perceptron 可以解决任何问题了？但是要注意的是，上面结论的限定条件：_n 元变量的连续函数_，如果最终能解决问题的函数不是连续函数，那么就不能用这个结论；_有限次_ 则是一个很模糊的说明，具体多少次也没有说，还有就是 _单变量_
 线性函数，那选择哪个单变量线性函数，也没有具体限制。所以这个结论是一个有用的开放的结论。
 
-不过在 XOR 问题上，恰好可以使用简单堆叠 Perceptron 解决。
+不过在 XOR 问题上，恰好可以使用简单堆叠 Perceptron 解决。那什么是堆叠 Perceptron 呢？
+
+![f7.1.png](assets/f7.1.png)
+
+上面的图来自于[这里](http://deeplearning.net/tutorial/mlp.html)
+
+其中图上的 Input Layer 对应着输入，而 Output Layer 对应着输出，中间 Hidden Layer 中的每一个圆圈都代表一个 Perceptron。这样的具有 1 层 Input Layer ， 1 层 Hidden Layer ， 1 层 Output Layer 的结构，很多时候往往称之为 3 层 Neural Network ， 但在这里，我想暂时称之为 3 层 Perceptron 。面对现在要解决的 XOR 问题，可以设计一个 3 层神经网络，中间 Hidden Layer 有两个 Perceptron ， 最后的 Output Layer 则只有一个 1 个 Perceptron ，并将它的结果作为输出。上述对应的结构，示意如下：
+
+![f7.2.png](assets/f7.2.png)
+
+这个网络的结构来自于 Ian 的 Deep Learning 第 6 章。
