@@ -60,4 +60,4 @@ $$\mathbf{w}^{(2)}$$ 表示第二层，也就是输出层的权重向量。$$\ma
 
 那么要求解 $$\mathbf{w}^{(1)}_{1m}$$ 的值，用上面类似的办法：
 
-<center>$$ \frac{\partial loss_i}{\partial w^{(1)}_{1m}} =  \frac{\partial loss_i}{\partial \delta^{(2)}} \frac{\partial \delta^{(2)}}{\partial z^{(2)}} \frac{\partial z^{(2)}}{\partial a_1^{(1)}} \frac{\partial a_1^{(1)}}{\partial z_1^{(1)}}  \frac{z_1^{(1)}}{\partial w^{(1)}_{1m}}$$</center><br/>
+<center>$$ \frac{\partial loss_i}{\partial w^{(1)}_{1m}} =  \frac{\partial loss_i}{\partial \delta^{(2)}} \frac{\partial \delta^{(2)}}{\partial z^{(2)}} \frac{\partial z^{(2)}}{\partial a_1^{(1)}} \frac{\partial a_1^{(1)}}{\partial z_1^{(1)}}  \frac{\partial z_1^{(1)}}{\partial w^{(1)}_{1m}}$$</center><br/>
