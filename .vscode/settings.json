@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "/Users/hailin/opt/miniconda3/envs/hornos/bin/python",
+    "python.pythonPath": "/Users/hailin/opt/miniconda3/bin/python",
     "python.condaPath": "/Users/hailin/opt/miniconda3/bin/conda"
 }
