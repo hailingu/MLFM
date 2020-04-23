@@ -14,3 +14,5 @@ Bias-Variance_Decomposition.md
 SUMMARY.md
 assets
 .vscode
+.idea
+.gitignore
