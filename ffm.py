@@ -47,33 +47,33 @@ cv = torch.rand(feature_cnt + 1, field_cnt + 1, k, device=device, dtype=dtype, r
 
 LEARNING_RATE = 1e-1
 
-EPOCH = 3
-PRINT_STEP = EPOCH / 3
+EPOCH = 10
+PRINT_STEP = EPOCH / 10
 N = len(y_train)
 
-BATCH_SIZE = 8
+BATCH_SIZE = 50
 start = 0
 end = start + BATCH_SIZE
 
 for epoch in range(EPOCH):
     start = 0
+    end = start + BATCH_SIZE
+    print(w)
     while start < N:
         if end >= N:
             end = N
 
-        X_batch = torch.empty(feature_cnt + 1, BATCH_SIZE, dtype=torch.double)
-        y_batch = torch.from_numpy(np.array(y_train[start:end], np.double)).reshape(-1, BATCH_SIZE)
-        y_batch[y_batch == 0] = 1e-3
-        y_batch[y_batch == 1] = 1 - 1e-3
-        for idx in range(BATCH_SIZE):
+        X_batch = torch.empty(feature_cnt + 1, end - start, dtype=torch.double)
+        y_batch = torch.from_numpy(np.array(y_train[start:end], np.double)).reshape(-1, end - start)
+        for idx in range(end - start):
             i = torch.LongTensor(X_train[start:end][idx]['feature'])
             v = torch.DoubleTensor(X_train[start:end][idx]['value'])
             X_batch[:, idx] = torch.sparse.DoubleTensor(i.t(), v).to_dense()
 
         linear_part = w.T.mm(X_batch)
-        cross_part = torch.zeros(1, BATCH_SIZE, dtype=torch.double, requires_grad=False)
+        cross_part = torch.zeros(1, end - start, dtype=torch.double, requires_grad=False)
 
-        for idx in range(BATCH_SIZE):
+        for idx in range(end - start):
             x = X_train[start:end][idx]
             for f1 in range(0, len(x['field']) - 1):
                 for f2 in range(f1 + 1, len(x['field'])):
@@ -86,11 +86,10 @@ for epoch in range(EPOCH):
                     factor = cv[f1_feature, f2_field, :].mul(cv[f2_feature, f1_field, :])
                     cross_part[0, idx] += factor.sum() * x['value'][f1] * x['value'][f2]
         y_hat = linear_part + cross_part
-        y_hat[y_hat > 7] = 7
         y_hat = 1.0 / (1.0 + torch.exp(-1 * y_hat))
 
         logloss = -1 * torch.sum(
-            torch.mul(y_hat, torch.log(y_batch)) + torch.mul((1 - y_hat), torch.log(1 - y_batch))) / BATCH_SIZE
+            torch.mul(y_batch, torch.log(y_hat)) + torch.mul((1 - y_batch), torch.log(1 - y_hat))) / BATCH_SIZE
         logloss.backward()
 
         with torch.no_grad():
