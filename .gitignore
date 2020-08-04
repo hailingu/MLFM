@@ -16,3 +16,4 @@ SUMMARY.md
 .idea
 .gitignore
 ffm.py
+*DS_Store*
